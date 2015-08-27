@@ -15,8 +15,8 @@ class Db{
         $type = $config['type'];
         switch($type){
             case 'mysql':
-                if(!isset(self::$_db['mysql'])){
-                    self::$_db =& load_class('mysql', 'database', $config['mysql']);
+                if(!isset(self::$_db[$type])){
+                    self::$_db[$type] =& load_class('mysql', 'database', $config[$type]);
                 }
                 break;
         }
