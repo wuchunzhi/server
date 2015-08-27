@@ -17,8 +17,8 @@ if (!function_exists('load_class')) {
         } elseif (file_exists(APPPATH . $directory . '/' . $classname . '.php')) {
             require APPPATH . $directory . '/' . $classname . '.php';
         }
-//        $ucname = ucfirst($classname);
-        $_class[$classname] = new $classname($data);
+        $ucname = ucfirst($classname);
+        $_class[$classname] = new $ucname($data);
         return $_class[$classname];
     }
 }

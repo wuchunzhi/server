@@ -42,7 +42,7 @@ if (!file_exists(APPPATH . '/controllers/' . $controller . '.php')) {
 $INPUT = load_class('input');
 $INPUT->init();
 
-$CTR = load_class('controller');
+load_class('controller');
 
 $controller = load_class($controller, 'controllers');
 

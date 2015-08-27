@@ -53,7 +53,7 @@ class Router
 
     public function get_auto_router(){
         //¼ÓÔØcontroller
-        $CTR = load_class('Controller');
+        load_class('controller');
         if(!empty($this->_config['auto_controller'])){
             foreach($this->_config['auto_controller'] as $val){
                 if (!file_exists(APPPATH . '/controllers/' . $val . '.php')) {
