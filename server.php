@@ -5,7 +5,7 @@
  * Date: 2015/8/26 0026
  * Email: cnddcoder@gmail.com
  */
-class swoole_server
+class servers
 {
     static $_swoole_server;
 
@@ -40,9 +40,10 @@ class swoole_server
     /**
      * 初始化信息
      */
-    public function init_info($serv, $fd, $from_id, $data){
+    public function init_info($fd, $from_id, $data)
+    {
         $_SERVER = array();
-        if(is_string($data)){
+        if (is_string($data)) {
             $data = json_decode($data, true);
         }
         $_SERVER['c'] = isset($data['c']) ? $data['c'] : 'index';
@@ -54,7 +55,8 @@ class swoole_server
     /**
      * 运行框架
      */
-    public function run_mvc(){
+    public function run_mvc()
+    {
         $index = mainindex::getinstance();
         $index->start_server();
     }
@@ -78,10 +80,10 @@ class swoole_server
      */
     public function receive($serv, $fd, $from_id, $data)
     {
-        if(!isset(self::$_send)){
+        if (!isset(self::$_send)) {
             self::$_send = $serv;
         }
-        $this->init_info($serv, $fd, $from_id, $data);
+        $this->init_info($fd, $from_id, $data);
         $this->run_mvc();
         self::$_send->send($fd, 'Swoole: ' . 'is_end');
         //$serv->close($fd);
@@ -158,4 +160,4 @@ class swoole_server
     }
 }
 
-swoole_server::get_instance();
+servers::get_instance();
