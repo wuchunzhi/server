@@ -27,8 +27,8 @@ $return['router'] = array(
 );
 $return['database'] = array(
     //数据库类型
-    ['type'] => 'mysql',
-    ['mysql'] => array(
+    'type' => 'mysql',
+    'mysql' => array(
         //数据库地址
         'hostname' => '127.0.0.1',
         //数据库用户名
