@@ -38,7 +38,7 @@ class Config
     {
         if(is_array($item)){
             $config = self::$_config[$this->_classname];
-            foreach($item as $key => $val){
+            foreach($item as $val){
                 if(isset($config[$val])){
                     $config = $config[$val];
                 }

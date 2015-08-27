@@ -23,9 +23,7 @@ $return['router'] = array(
     'auto_controller' => array(
         'index'
     ),
-    'auto_model' => array(
-
-    ),
+    'auto_model' => array(),
 );
 $return['database'] = array(
     //数据库类型

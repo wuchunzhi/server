@@ -13,7 +13,7 @@ class Output{
         if(is_array($data)){
             $data = json_encode($data);
         }
-        swooel_server::$_send->send($_SERVER['fd'], $data);
+        swoole_server::$_send->send($_SERVER['fd'], $data);
     }
 
 }

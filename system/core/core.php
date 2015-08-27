@@ -14,6 +14,7 @@ $CONFIG->load('config');
 
 //获取路由配置
 $database_config = $CONFIG->get_item(array('database'));
+
 //加载数据库
 $DB = &load_class('db', 'core', $database_config);
 

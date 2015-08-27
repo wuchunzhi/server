@@ -5,9 +5,9 @@
  * Date: 2015/8/26 0026
  * Email: cnddcoder@gmail.com
  */
-class swooel_server
+class swoole_server
 {
-    static $_swooel_server;
+    static $_swoole_server;
 
     static $_server;
 
@@ -150,12 +150,12 @@ class swooel_server
 
     public static function get_instance()
     {
-        if (self::$_swooel_server) {
-            return self::$_swooel_server;
+        if (self::$_swoole_server) {
+            return self::$_swoole_server;
         }
-        self::$_swooel_server = new self();
-        return self::$_swooel_server;
+        self::$_swoole_server = new self();
+        return self::$_swoole_server;
     }
 }
 
-swooel_server::get_instance();
+swoole_server::get_instance();
