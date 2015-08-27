@@ -5,7 +5,7 @@
  * Date: 2015/8/27 0027
  * Email: cnddcoder@gmail.com
  */
-Class DB
+Class Mysql
 {
 
     private $link_id;
