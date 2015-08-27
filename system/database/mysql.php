@@ -17,7 +17,7 @@ Class Mysql
     public function __construct($config)
     {
         $this->time = $this->microtime_float();
-        $this->connect($config["hostname"], $config["username"], $config["password"], $config["database"], $config["pconnect"]);
+        $this->connect($config["hostname"], $config["username"], $config["password"], $config["basename"], $config["pconnect"]);
         $this->is_log = $config["log"];
         if ($this->is_log) {
             $handle = fopen($config["logfilepath"] . "dblog.txt", "a+");

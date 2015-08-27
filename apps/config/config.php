@@ -36,7 +36,7 @@ $return['database'] = array(
         //数据库密码
         'password' => 'coolheros',
         //数据库
-        'database' => 'database',
+        'basename' => 'swoole',
         //是否持久连接 1为不记录  0为记录
         'pconnect' => 1,
         //是否记录日志
