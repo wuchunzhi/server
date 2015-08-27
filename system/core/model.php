@@ -1,10 +1,10 @@
 <?php
 /**
  * User: wuchunzhi
- * Date: 2015/8/24 0024
+ * Date: 2015/8/27 0027
  * Email: cnddcoder@gmail.com
  */
-class Controller{
+class Model{
     public function __construct(){
 
     }

@@ -5,18 +5,14 @@
  * Email: cnddcoder@gmail.com
  */
 class Load{
-    static $_model;
     public function __construct(){
 
     }
 
     public function model($model){
-        if(isset(self::$_model[$model])){
-            return self::$_model[$model];
+        if(is_array($model)){
+            return;
         }
-        require APPPATH . '/models/' . $model . '.php';
-        $modename = ucfirst($model);
-        self::$_model[$model] = new $modename();
-        return self::$_model[$model];
+        return $reutn = &load_class($model, 'models');
     }
 }

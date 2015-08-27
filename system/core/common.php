@@ -5,7 +5,7 @@
  * Email: cnddcoder@gmail.com
  */
 if (!function_exists('load_class')) {
-    function load_class($classname, $directory = 'core', $data = '')
+    function &load_class($classname, $directory = 'core', $data = '')
     {
         static $_class = array();
         if (isset($_class[$classname])) {
@@ -16,6 +16,9 @@ if (!function_exists('load_class')) {
             require SYSPATH . $directory . '/' . $classname . '.php';
         } elseif (file_exists(APPPATH . $directory . '/' . $classname . '.php')) {
             require APPPATH . $directory . '/' . $classname . '.php';
+        }else{
+            show_404($classname);
+            return;
         }
         $ucname = ucfirst($classname);
         $_class[$classname] = new $ucname($data);

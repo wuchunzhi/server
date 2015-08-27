@@ -38,6 +38,28 @@ class swooel_server
     }
 
     /**
+     * 初始化信息
+     */
+    public function init_info($serv, $fd, $from_id, $data){
+        $_SERVER = array();
+        if(is_string($data)){
+            $data = json_decode($data, true);
+        }
+        $_SERVER['c'] = isset($data['c']) ? $data['c'] : 'index';
+        $_SERVER['m'] = isset($data['m']) ? $data['m'] : 'index';
+        $_SERVER['fd'] = $fd;
+        $_SERVER['from_id'] = $from_id;
+    }
+
+    /**
+     * 运行框架
+     */
+    public function run_mvc(){
+        $index = mainindex::getinstance();
+        $index->start_server();
+    }
+
+    /**
      * 连接
      * @param $serv
      * @param $fd
@@ -59,16 +81,8 @@ class swooel_server
         if(!isset(self::$_send)){
             self::$_send = $serv;
         }
-        $_SERVER = array();
-        if(is_string($data)){
-            $data = json_decode($data, true);
-        }
-        $_SERVER['c'] = isset($data['c']) ? $data['c'] : 'index';
-        $_SERVER['m'] = isset($data['m']) ? $data['m'] : 'index';
-        $_SERVER['fd'] = $fd;
-        $_SERVER['from_id'] = $from_id;
-        $index = mainindex::getinstance();
-        $index->start_server();
+        $this->init_info($serv, $fd, $from_id, $data);
+        $this->run_mvc();
         self::$_send->send($fd, 'Swoole: ' . 'is_end');
         //$serv->close($fd);
     }
