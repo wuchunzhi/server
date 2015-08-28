@@ -60,7 +60,7 @@ if (!function_exists('remove_invisible_characters')) {
 }
 
 /**
- * XSS¹¥»÷¹ıÂË
+ * XSS¹ıÂË
  */
 if (!function_exists('xss_clean')) {
     function xss_clean($info)
