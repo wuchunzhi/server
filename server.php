@@ -88,7 +88,9 @@ class servers
             self::$_send = $serv;
         }
         $this->init_info($fd, $from_id, $data);
-        $this->run_mvc();
+        for($i = 0; $i <300; $i++){
+            $this->run_mvc();
+        }
         $time = explode ( " ", microtime () );
         $time = $time [1] . ($time [0] * 1000);
         $time2 = explode ( ".", $time );
