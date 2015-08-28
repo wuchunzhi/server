@@ -80,12 +80,14 @@ class servers
      */
     public function receive($serv, $fd, $from_id, $data)
     {
+        $btime = microtime();
         if (!isset(self::$_send)) {
             self::$_send = $serv;
         }
         $this->init_info($fd, $from_id, $data);
         $this->run_mvc();
-        self::$_send->send($fd, 'Swoole: ' . 'is_end');
+        $etime = microtime();
+        self::$_send->send($fd, "\n usetime: " . $etime - $btime);
         //$serv->close($fd);
     }
 
