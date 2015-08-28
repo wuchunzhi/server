@@ -80,13 +80,15 @@ class servers
      */
     public function receive($serv, $fd, $from_id, $data)
     {
-        $btime = microtime();
+        list($usec, $sec) = explode(" ", microtime());
+        $btime = ((float)$usec + (float)$sec);
         if (!isset(self::$_send)) {
             self::$_send = $serv;
         }
         $this->init_info($fd, $from_id, $data);
         $this->run_mvc();
-        $etime = microtime();
+        list($usec, $sec) = explode(" ", microtime());
+        $etime = ((float)$usec + (float)$sec);
         self::$_send->send($fd, "\n usetime: " . $etime - $btime);
         //$serv->close($fd);
     }
