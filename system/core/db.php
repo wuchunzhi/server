@@ -51,9 +51,14 @@ class Db
 
     private function _where_init($key, $val)
     {
-        $key = implode(' ', $key);
-        list($key, $type) = explode(' ', $key);
-        $type = empty($type) ? '=' : $type;
+        $fll = strpos($key, ' ');
+        if($fll){
+            $key = implode(' ', $key);
+            list($key, $type) = explode(' ', $key);
+        }else{
+            $type = '=';
+        }
+
         if (empty($this->_where)) {
             $this->_where .= "WHERE $key $type $val ";
         }
