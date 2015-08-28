@@ -37,15 +37,17 @@ class Db
             $type = $this->_where_init($key, $val);
             if (empty($this->_where)) {
                 $this->_where .= "WHERE $key $type $val ";
+            }else{
+                $this->_where .= "AND $key $type $val ";
             }
-            $this->_where .= "AND $key $type $val ";
         }elseif(is_array($key)){
             foreach($key as $k => $v){
                 $type = $this->_where_init($key, $val);
                 if (empty($this->_where)) {
                     $this->_where .= "WHERE $key $type $val ";
+                }else{
+                    $this->_where .= "AND $key . $type . $val ";
                 }
-                $this->_where .= "AND $key . $type . $val ";
             }
         }else{
             if(empty($this->_where)){
@@ -88,8 +90,9 @@ class Db
         $type = $this->_where_init($key, $val);
         if (empty($this->_where)) {
             $this->_where .= "WHERE $key $type $val ";
+        }else{
+            $this->_where .= "OR $key $type $val ";
         }
-        $this->_where .= "OR $key $type $val ";
     }
 
     public function where_not_in($key, $val)
@@ -266,6 +269,7 @@ class Db
     {
         $this->_sql = "SELECT " . $this->_select . " FROM " . $tablename . " " .  $this->_where;
         //$res = self::$_db->query($this->_sql);
+        $this->init_params();
         return $this->_sql;
     }
 
@@ -285,7 +289,7 @@ class Db
     }
 
     private function init_params(){
-        $this->_sql = "";
+        //$this->_sql = "";
         $this->_select = '*';
         $this->_where = "";
     }
