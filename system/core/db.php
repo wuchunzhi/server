@@ -279,8 +279,9 @@ class Db
     {
         $this->_sql = "SELECT " . $this->_select . " FROM " . $tablename . " " .  $this->_where;
         $res = self::$_db->query($this->_sql);
+        $res = self::$_db->fetch_array($res);
         $this->init_params();
-        return $this->_sql;
+        return $res;
     }
 
     public function insert()
