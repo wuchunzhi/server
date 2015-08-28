@@ -26,7 +26,7 @@ $return['router'] = array(
     'auto_model' => array(),
 );
 $return['database'] = array(
-    //数据库类型
+    //数据库类型 mysql,mysqli
     'type' => 'mysql',
     'mysql' => array(
         //数据库地址
