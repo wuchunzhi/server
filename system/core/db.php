@@ -260,8 +260,8 @@ class Db
     public function get($tablename)
     {
         $this->_sql = "SELECT " . $this->_select . " FROM " . $tablename .  $this->_where;
-        $res = self::$_db->query($this->_sql);
-        return $res;
+        //$res = self::$_db->query($this->_sql);
+        return $this->_sql;
     }
 
     public function insert()
