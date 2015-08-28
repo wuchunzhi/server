@@ -8,8 +8,9 @@
 class Db
 {
     private $_sql = "";
+    private $_select = '*';
     static $_db;
-    private $_where;
+    private $_where = "";
 
     public function __construct($config)
     {
@@ -245,14 +246,16 @@ class Db
 
     }
 
-    public function select()
+    public function select($select = '*')
     {
-
+        $this->_select = $select;
     }
 
-    public function get()
+    public function get($tablename)
     {
-
+        $this->_sql = "SELECT $this->_select FROM $tablename $this->_where";
+        $res = self::$_db->query($this->_sql);
+        return $res;
     }
 
     public function insert()
@@ -268,6 +271,12 @@ class Db
     public function query()
     {
 
+    }
+
+    private function init_params(){
+        $this->_sql = "";
+        $this->_select = '*';
+        $this->_where = "";
     }
 }
 

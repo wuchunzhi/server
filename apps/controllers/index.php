@@ -12,7 +12,12 @@ class Index extends Controller
     }
 
     public function index(){
-        $this->output->api_return("<------------------------> .\n");
+        $this->db->where('username','1111');
+        $res = $this->db->get('admin_users');
+        if($res){
+            $this->output->api_return("1234");
+        }
+        $this->output->api_return("0000");
     }
     public function user(){
         $this->load->model('Usermodel');
