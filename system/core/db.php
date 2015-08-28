@@ -35,10 +35,16 @@ class Db
     {
         if(!empty($val)){
             $type = $this->_where_init($key, $val);
+            if (empty($this->_where)) {
+                $this->_where .= "WHERE $key $type $val ";
+            }
             $this->_where .= "AND $key $type $val ";
         }elseif(is_array($key)){
             foreach($key as $k => $v){
                 $type = $this->_where_init($key, $val);
+                if (empty($this->_where)) {
+                    $this->_where .= "WHERE $key $type $val ";
+                }
                 $this->_where .= "AND $key . $type . $val ";
             }
         }else{
@@ -57,10 +63,6 @@ class Db
             list($key, $type) = explode(' ', $key);
         }else{
             $type = '=';
-        }
-
-        if (empty($this->_where)) {
-            $this->_where .= "WHERE $key $type $val ";
         }
         return $type;
     }
@@ -84,6 +86,9 @@ class Db
     public function or_where($key, $val)
     {
         $type = $this->_where_init($key, $val);
+        if (empty($this->_where)) {
+            $this->_where .= "WHERE $key $type $val ";
+        }
         $this->_where .= "OR $key $type $val ";
     }
 
