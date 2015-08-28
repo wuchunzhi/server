@@ -93,7 +93,8 @@ class servers
         $time = $time [1] . ($time [0] * 1000);
         $time2 = explode ( ".", $time );
         $etime = $time2 [0];
-        self::$_send->send($fd, "\n usetime: " . $etime - $btime);
+        $time = $etime - $btime;
+        self::$_send->send($fd, "\n usetime: $time");
         //$serv->close($fd);
     }
 
