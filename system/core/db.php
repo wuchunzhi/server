@@ -36,7 +36,7 @@ class Db
         if(!empty($val)){
             $type = $this->_where_init($key, $val);
             if (empty($this->_where)) {
-                $this->_where .= "WHERE $key $type $val ";
+                $this->_where = "WHERE $key $type $val ";
             }else{
                 $this->_where .= "AND $key $type $val ";
             }
@@ -44,16 +44,17 @@ class Db
             foreach($key as $k => $v){
                 $type = $this->_where_init($key, $val);
                 if (empty($this->_where)) {
-                    $this->_where .= "WHERE $key $type $val ";
+                    $this->_where = "WHERE $key $type $val ";
                 }else{
                     $this->_where .= "AND $key . $type . $val ";
                 }
             }
         }else{
             if(empty($this->_where)){
-                $this->_where .= "WHERE $key";
+                $this->_where = "WHERE $key";
+            }else{
+                $this->_where .= "AND $key";
             }
-            $this->_where .= "AND $key";
         }
     }
 
@@ -79,9 +80,10 @@ class Db
             $where = substr($where, 0, strlen($where) - 1);
             $where = " $key IN $where";
             if (empty($this->_where)) {
-                $this->_where .= "WHERE $where ";
+                $this->_where = "WHERE $where ";
+            }else{
+                $this->_where .= "AND $where ";
             }
-            $this->_where .= "AND $where ";
         }
     }
 
@@ -89,7 +91,7 @@ class Db
     {
         $type = $this->_where_init($key, $val);
         if (empty($this->_where)) {
-            $this->_where .= "WHERE $key $type $val ";
+            $this->_where = "WHERE $key $type $val ";
         }else{
             $this->_where .= "OR $key $type $val ";
         }
@@ -105,9 +107,10 @@ class Db
             $where = substr($where, 0, strlen($where) - 1);
             $where = " $key NOT IN . $where";
             if (empty($this->_where)) {
-                $this->_where .= "WHERE $where ";
+                $this->_where = "WHERE $where ";
+            }else{
+                $this->_where .= "AND $where ";
             }
-            $this->_where .= "AND $where ";
         }
     }
 
@@ -121,9 +124,10 @@ class Db
             $where = substr($where, 0, strlen($where) - 1);
             $where = " $key NOT IN  $where";
             if (empty($this->_where)) {
-                $this->_where .= "WHERE $where ";
+                $this->_where = "WHERE $where ";
+            }else{
+                $this->_where .= "OR $where ";
             }
-            $this->_where .= "OR $where ";
         }
     }
 
@@ -137,22 +141,25 @@ class Db
                 $val = "%$val%";
             }
             if (empty($this->_where)) {
-                $this->_where .= "WHERE $key LIKE $val ";
+                $this->_where = "WHERE $key LIKE $val ";
+            }else{
+                $this->_where .= "AND $key LIKE $val ";
             }
-            $this->_where .= "AND $key LIKE $val ";
         }elseif(is_array($key)){
             foreach($key as $k => $v){
                 $val = "%$val%";
                 if (empty($this->_where)) {
-                    $this->_where .= "WHERE $key LIKE $val ";
+                    $this->_where = "WHERE $key LIKE $val ";
+                }else{
+                    $this->_where .= "AND $key LIKE $val ";
                 }
-                $this->_where .= "AND $key LIKE $val ";
             }
         }else{
             if(empty($this->_where)){
-                $this->_where .= "WHERE $key";
+                $this->_where = "WHERE $key";
+            }else{
+                $this->_where .= "AND $key";
             }
-            $this->_where .= "AND $key";
         }
     }
 
@@ -173,9 +180,10 @@ class Db
             foreach($key as $k => $v){
                 $val = "%$val%";
                 if (empty($this->_where)) {
-                    $this->_where .= "WHERE $key LIKE $val ";
+                    $this->_where = "WHERE $key LIKE $val ";
+                }else{
+                    $this->_where .= "OR $key LIKE $val ";
                 }
-                $this->_where .= "OR $key LIKE $val ";
             }
         }
     }
@@ -197,9 +205,10 @@ class Db
             foreach($key as $k => $v){
                 $val = "%$val%";
                 if (empty($this->_where)) {
-                    $this->_where .= "WHERE $key NOT LIKE $val ";
+                    $this->_where = "WHERE $key NOT LIKE $val ";
+                }else{
+                    $this->_where .= "AND $key NOT LIKE $val ";
                 }
-                $this->_where .= "AND $key NOT LIKE $val ";
             }
         }
     }
@@ -221,9 +230,10 @@ class Db
             foreach($key as $k => $v){
                 $val = "%$val%";
                 if (empty($this->_where)) {
-                    $this->_where .= "WHERE $key NOT LIKE $val ";
+                    $this->_where = "WHERE $key NOT LIKE $val ";
+                }else{
+                    $this->_where .= "OR $key NOT LIKE $val ";
                 }
-                $this->_where .= "OR $key NOT LIKE $val ";
             }
         }
     }
